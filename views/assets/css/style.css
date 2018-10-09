@@ -1,0 +1,39 @@
+/*login css*/
+@import url('https://fonts.googleapis.com/css?family=Vidaloka');
+#hpage{
+    
+    font-family: 'Vidaloka', serif;
+}
+#hpage img{
+    width: 75%;
+}
+#title-page {
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+#forms-login{
+    background-image: linear-gradient(
+        rgba(253, 251, 251, 0.603),rgba(253, 251, 251, 0.664)),url("../images/background.jpeg") ;
+        background-size: 100%;
+        background-repeat: no-repeat;
+    padding-top: 8%;
+    padding-bottom: 8%;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.603);
+}
+footer{
+    padding-top: 1%;
+    font-size: 10px;
+}
+/*cadastrar cliente css*/
+#register-customer{
+    padding-left: 15%;
+    padding-top: 5%;
+}
+/*Exibir clientes*/
+#btn-novo{
+    margin: 1%;
+}
+#btn-novo-ava{
+    margin: 1%;
+}
+
