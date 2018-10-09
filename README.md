@@ -30,8 +30,8 @@ Caso você tenha ficado com alguma dúvida [abra uma issue](https://github.com/F
 
 **Boa sorte! xD**
 ## Configurações para o projeto
-Adicione os seguintes códigos aos seguintes arquivos 
-A pasta do projeto deve estar em C:
+Adicione os seguintes códigos aos seguintes arquivos :
+A pasta do projeto deve estar em C:.
 C:\Windows\System32\drivers\etc
 Arquivo: hosts
 127.0.0.1	   www.projeto4devs.com.br
