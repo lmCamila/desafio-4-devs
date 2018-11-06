@@ -6,6 +6,14 @@ use Slim\Http\Request;
 use \Psr\Http\Message\ServerRequestInterface as Requests;
 use \Psr\Http\Message\ResponseInterface as Response;
 
+$app->get('/', function(){
+    $cliente = new Cliente();
+    $data = array("totalClientes" => count($cliente->buscarTodosClientes()));
+    $page = new Page();
+
+    $page->setTpl("index",$data);
+  
+});
 $app->get('/clientes',function(){
     $cliente = new Cliente();
     $array = $cliente->buscarTodosClientes();
@@ -75,7 +83,7 @@ $app->post('/clientes/alterar/{chave}',function(Requests $request, Response $res
     exit();
 });
 
-$app->get('/clientes/{chave}/deletar',function(Requests $request, Response $response, array $args){
+$app->get('/clientes/excluir/{chave}',function(Requests $request, Response $response, array $args){
     $cliente = new Cliente();
     $cliente->deleteCliente($args['chave']);
     header("Location: /clientes");

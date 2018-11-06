@@ -37,3 +37,52 @@ footer{
     margin: 1%;
 }
 
+#home{
+    background-image: linear-gradient(
+        rgba(253, 251, 251, 0.603),rgba(253, 251, 251, 0.664)),url("../images/clientes-background.png") ;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding-top: 16%;
+    padding-bottom: 16%;
+    padding-left: 4%;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.603);
+}
+#avaliacoes{
+    background-image: linear-gradient(
+        rgba(253, 251, 251, 0.603),rgba(253, 251, 251, 0.664)),url("../images/avaliacoes-background.jpg") ;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding-top: 16%;
+    padding-bottom: 16%;
+    padding-left: 4%;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.603);
+}
+#resultados{
+    background-image: linear-gradient(
+        rgba(253, 251, 251, 0.603),rgba(253, 251, 251, 0.664)),url("../images/resultados-background.jpg") ;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding-top: 16%;
+    padding-bottom: 16%;
+    padding-left: 4%;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.603);
+}
+#voltar{
+    width: 4%;
+    height: 6%;
+    position: fixed;
+    right: 2%;
+    bottom: 5%;
+}
+
+#tabela-resultados{
+    margin-top: 4%;
+}
+
+#progresso{
+    padding-top:2%;
+}
+
+#table-results{
+    padding-top: 2%;
+}

@@ -58,13 +58,14 @@ class Avaliacao{
 		$firebase = $this->accessDB();
 		$database = $firebase->getDatabase();
 		$classificacao = NULL;
-		if($nota === '0'||$nota === '1'||$nota === '2'||$nota === '3'||$nota === '4'||$nota === '5'||$nota === '6'){
-			$classificacao = "Detrator";
-		}elseif ($nota === '7'||$nota === '8') {
-			$classificacao = "Neutro";
-		}elseif ($nota === '9'||$nota === '10') {
-			$classificacao = "Promotor";
-		}
+		    if((int)$nota <= 6){
+				$classificacao = "Detrator";
+			}elseif ((int)$nota > 6 && $nota <= 8) {
+				$classificacao = "Neutro";
+			}elseif ((int)$nota >= 9) {
+				$classificacao = "Promotor";
+			}
+		
 		$cliente = new Cliente();
 		$chave = $cliente->buscarChaveCliente($empresa);
 		$updates = [
@@ -80,74 +81,140 @@ class Avaliacao{
 		$mes=0;$mes1;$ano=0;$ano1;
 		foreach ($results as $key => $value) {
 			if(strcmp($value['data'],$data_referencia) === 0 ){
-				throw new \Exception("O cliente ja participou  da avaliação neste mês.");
+				//throw new \Exception("O cliente ja participou  da avaliação neste mês.");
+				return false;
 			}
 			$ano1 = (int)substr($value['data'],0,4);
 			$mes1 = (int)substr($value['data'], 5,strlen($value['data']));
 			if($ano1 > $ano){
 				$ano = $ano1;
-				$mes = $mes1;
+				$mes = $mes1;	
 			}elseif($mes1 > $mes){
 				$mes = $mes1;
 			}
 		}
+
 		if($mes === 11){
 			$str1 = $ano."-".($mes1 + 1);
 			$str2 = ($ano+1)."-".(01);
 			$str3 = $ano."-".$mes;
 			if(strcmp($data_referencia, $str1) === 0 || strcmp($data_referencia, $str2) === 0 || strcmp($data_referencia, $str3) === 0){
-				throw new \Exception("O periodo para que o cliente possa participar novamente da avaliação ainda não terminou.");
+				//throw new \Exception("O periodo para que o cliente possa participar novamente da avaliação ainda não terminou.");
+				return false;
 			}		
 		}elseif ($mes === 12) {
 			$str1 = ($ano+1)."-".(01);
 			$str2 = ($ano+1)."-".(02);
 			$str3 = $ano."-".$mes;;
 			if(strcmp($data_referencia, $str1) === 0 || strcmp($data_referencia, $str2) === 0 || strcmp($data_referencia, $str3) === 0){
-				throw new \Exception("O periodo para que o cliente possa participar novamente da avaliação ainda não terminou.");
+				//throw new \Exception("O periodo para que o cliente possa participar novamente da avaliação ainda não terminou.");
+				return false;
 			}	
-		}else{
-			if($mes =! 9){
+		}elseif($mes < 11){
+			if($mes != 8){
 				$str1 = $ano."-0".($mes + 1);
 				$str2 = $ano."-0".($mes + 2);
-				$str3 = $ano."-0".$mes;;
-			}else{
+				$str3 = $ano."-0".$mes;
+				if(strcmp($data_referencia, $str1) === 0 || strcmp($data_referencia, $str2) === 0 || strcmp($data_referencia, $str3) === 0){
+				//throw new \Exception("O periodo para que o cliente possa participar novamente da avaliação ainda não terminou.");
+				return false;
+			}
+			}
+			if($mes === 8){
+				$str1 = $ano."-0".($mes + 1);
+				$str2 = $ano."-".($mes + 2);
+				$str3 = $ano."-0".$mes;
+				if(strcmp($data_referencia, $str1) === 0 || strcmp($data_referencia, $str2) === 0 || strcmp($data_referencia, $str3) === 0){
+				//throw new \Exception("O periodo para que o cliente possa participar novamente da avaliação ainda não terminou.");
+				return false;
+			}
+			}
+			if($mes === 9){
 				$str1 = $ano."-".($mes + 1);
 				$str2 = $ano."-".($mes + 2);
 				$str3 = $ano."-0".$mes;
+				if(strcmp($data_referencia, $str1) === 0 || strcmp($data_referencia, $str2) === 0 || strcmp($data_referencia, $str3) === 0){
+				//throw new \Exception("O periodo para que o cliente possa participar novamente da avaliação ainda não terminou.");
+				return false;
 			}
-			if(strcmp($data_referencia, $str1) === 0 || strcmp($data_referencia, $str2) === 0 || strcmp($data_referencia, $str3) === 0){
-				throw new \Exception("O periodo para que o cliente possa participar novamente da avaliação ainda não terminou.");
 			}
+			if($mes === 10){
+				$str1 = $ano."-".($mes + 1);
+				$str2 = $ano."-".($mes + 2);
+				$str3 = $ano."-".$mes;
+				if(strcmp($data_referencia, $str1) === 0 || strcmp($data_referencia, $str2) === 0 || strcmp($data_referencia, $str3) === 0){
+				//throw new \Exception("O periodo para que o cliente possa participar novamente da avaliação ainda não terminou.");
+				return false;
+			}
+			}
+			
 		}
+		return true;
 	}
 	public function calcularDados($data){
 		$promotor = 0;
 		$neutro = 0 ;
 		$detrator = 0;
 		$participantes=0;
+		$marcador;
 		$array = $this->buscarAvaliacaoPorData($data);
 			
 	     foreach ($array as $key => $value) {
-	        
-		    if($value['nota'] === '0'||$value['nota'] === '1'||$value['nota'] === '2'||$value['nota'] === '3'||$value['nota'] === '4'||$value['nota'] === '5'||$value['nota'] === '6'){
+	        $nota = (int)$value['nota'];
+		    if($nota <= 6){
 				$detrator++;
 				$participantes++;
-			}elseif ($value['nota'] === '7'||$value['nota'] === '8') {
+			}elseif ($nota > 6 && $nota <= 8) {
 				$neutro++;
 				$participantes++;
-			}elseif ($value['nota'] === '9'||$value['nota'] === '10') {
+			}elseif ($nota >= 9) {
 				$promotor++;
 				$participantes++;
 			}
 	    }
 		if($participantes===0){
-			$participantes = 1;
-			$nps=(($promotor-$detrator)/$participantes)*100;
+			throw new \Exception("Erro, não há participantes");
+			
 		}else{
 			$nps=(($promotor-$detrator)/$participantes)*100;
+			if($nps>=80){
+				$marcador = "table-success";
+			}elseif($nps < 80 && $nps >= 60){
+				$marcador = "table-warning";
+			}elseif($nps < 60){
+				$marcador = "table-danger";
+			}
 		}
-		$results=array('promotores'=>$promotor,'detratores'=>$detrator,'neutros'=>$neutro,'NPS'=>$nps);
+		$results=array('promotores'=>$promotor,'detratores'=>$detrator,'neutros'=>$neutro,'NPS'=>$nps,'marcador'=>$marcador);
 		return $results;
+	}
+
+	public function calcularAvaliacoes($data){
+		$cliente = new Cliente();
+		$pc =  (count($this->buscarAvaliacaoPorData($data))*100)/(count($cliente->buscarTodosClientes())*0.2);
+		return $pc;
+	}
+
+	public function retornaDataAtual(){
+		$today = getdate();
+		$mes = $today["mon"];
+		$ano = $today["year"];
+		if($mes <= 9){
+			return $ano."-0".$mes;
+		}else{
+			return $ano."-".($mes);
+		}
+	}
+	public function buscarDatas(){
+		$array = $this->buscarTodasAvaliacoes();
+	    $data=array();
+	     foreach ($array as $key => $value) {
+	        if(array_search($value["data"] ,$data)===FALSE){
+	            array_push($data, $value["data"]);
+	        } 
+	    }
+	    	    
+	    return $data;
 	}
 
 }

@@ -62,7 +62,7 @@ class Cliente{
 		$firebase = $this->accessDB();
 		$database = $firebase->getDatabase();
 		$key = 'clientes/' . $chave;
-		$database->getReference($chave)->remove();
+		$database->getReference($key)->remove();
 	}
 
 	public function buscarTodosClientes(){

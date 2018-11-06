@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../views/assets/css/style.css">
-    <title>Alterar Cliente</title>
+    <title>Clientes</title>
 </head>
 
 <body>
@@ -36,40 +36,37 @@
             </div>
         </nav>
     </header>
-    <div class="container" id="register-customer">
-        <div id="forms-customer" class="col-9 align-self-center">
-            <form method="POST" action="">
-                <div>
-                    <label for="id"Id:></label>
-                    <input class="form-control" type="text" id="id" name="id"value={$data.chave} disabled>
-                </div>
-                <div class="form-group">
-                    <label for="cliente">Empresa:</label>
-                    <div >
-                        <input class="form-control" type="text" id="cliente" name="cliente"  value="{$data.cliente}">
-                    </div>
-                </div>
-                <div class="form-group ">
-                    <label for="nome_contato">Nome do contato:</label>
-                    <input class="form-control" type="text" id="nome_contato" name="nome_contato"  value="{$data.nome_contato}">
-                </div>
-                <div class="form-group">
-                    <label for="data" class="col-form-label">Data em que se tornou cliente:</label>
-                    <div>
-                        <input class="form-control" type="month"  id="data" name="data"  value="{$data.data}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for = "status">Status</label>
-                    <select id="status" class="form-control" name= "status">
-                        <option selected>{$data.status}</option>
-                        <option>Inativo</option>
-                    </select>
-                </div>
-                <div class="row justify-content-center">
-                    <input type="submit" class="btn btn-primary" value="ENVIAR">
-                </div>
-            </form>
+    <div class="container">
+        <div id = "button-novo" class="row justify-content-end">
+            <a id="btn-novo"class="btn btn-primary" href="/clientes/cadastrar" role="button">Novo</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Empresa</th>
+                        <th scope="col">Contato</th>
+                        <th scope="col">Data de cadastro</th>
+                        <th scope="col">Sinalizador</th>
+                        <th scope="col"> </th>
+                        <th scope="col"> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $counter1=-1;  if( isset($data) && ( is_array($data) || $data instanceof Traversable ) && sizeof($data) ) foreach( $data as $key1 => $value1 ){ $counter1++; ?>
+
+                    <tr>
+                        <td><?php echo htmlspecialchars( $value1["cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                        <td><?php echo htmlspecialchars( $value1["nome_contato"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                        <td><?php echo htmlspecialchars( $value1["data"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                        <td><?php echo htmlspecialchars( $value1["classificacao"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                        <td><a class="btn btn-primary" href="/clientes/alterar/<?php echo htmlspecialchars( $value1["chave"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Alterar</a></td>
+                        <td><a class="btn btn-primary" href="/clientes/excluir/<?php echo htmlspecialchars( $value1["chave"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Excluir</a></td>
+                    </tr>
+                    <?php } ?>
+
+                </tbody>
+            </table>
         </div>
     </div>
     <footer>

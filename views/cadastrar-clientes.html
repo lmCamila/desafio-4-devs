@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="./views/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../views/assets/css/style.css">
     <title>Cadastrar Cliente</title>
 </head>
 
@@ -28,6 +28,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/avaliacoes">Avaliações</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/resultados">Resultados</a>
                     </li>
                 </ul>
             </div>
@@ -51,7 +54,7 @@
                 <div class="form-group">
                     <label for="data" class="col-form-label">Data em que se tornou cliente:</label>
                     <div>
-                        <input class="form-control" type="month"  id="data" name="data" required>
+                        <input class="form-control" type="month" value="2018-11" id="data" name="data" required>
                         <span class" msg-erro msg-contato"></span>
                     </div>
                 </div>
@@ -69,6 +72,11 @@
             </form>
         </div>
     </div>
+    <footer>
+        <div class="row justify-content-center">
+            <p>© Todos os direitos reservados.</p>
+        </div>
+    </footer> 
     <!-- Optional JavaScript -->
     <script type="text/javascript" src="../views/js/cliente.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

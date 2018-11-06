@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../views/assets/css/style.css">
-    <title>Alterar Cliente</title>
+    <title>Home</title>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav id="menu" class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" href="#">ForLogic</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -20,10 +20,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="/clientes">Clientes</a>
                     </li>
                     <li class="nav-item">
@@ -36,48 +36,40 @@
             </div>
         </nav>
     </header>
-    <div class="container" id="register-customer">
-        <div id="forms-customer" class="col-9 align-self-center">
-            <form method="POST" action="">
-                <div>
-                    <label for="id"Id:></label>
-                    <input class="form-control" type="text" id="id" name="id"value={$data.chave} disabled>
-                </div>
-                <div class="form-group">
-                    <label for="cliente">Empresa:</label>
-                    <div >
-                        <input class="form-control" type="text" id="cliente" name="cliente"  value="{$data.cliente}">
-                    </div>
-                </div>
-                <div class="form-group ">
-                    <label for="nome_contato">Nome do contato:</label>
-                    <input class="form-control" type="text" id="nome_contato" name="nome_contato"  value="{$data.nome_contato}">
-                </div>
-                <div class="form-group">
-                    <label for="data" class="col-form-label">Data em que se tornou cliente:</label>
-                    <div>
-                        <input class="form-control" type="month"  id="data" name="data"  value="{$data.data}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for = "status">Status</label>
-                    <select id="status" class="form-control" name= "status">
-                        <option selected>{$data.status}</option>
-                        <option>Inativo</option>
-                    </select>
-                </div>
-                <div class="row justify-content-center">
-                    <input type="submit" class="btn btn-primary" value="ENVIAR">
-                </div>
-            </form>
-        </div>
+    <div id="home" class="">
+        <div class="col-9 align-self-center">
+           <h1>Clientes</h1>
+           <p>Possuimos <?php echo htmlspecialchars( $totalClientes, ENT_COMPAT, 'UTF-8', FALSE ); ?> clientes cadastrados.</p>
+           <a class="btn btn-primary" href="/clientes" role="button">Ir para clientes</a>
+        </div>       
+    </div>
+    <div id="avaliacoes" class="">
+        <div class="col-9 align-self-center">
+           <h1>Avaliações</h1>
+           <p>As as valiações verificam os níveis de satisfação dos nossos clientes com nossos produtos.</p>
+           <a class="btn btn-primary" href="/avaliacoes" role="button">Ir para avaliações</a>
+        </div>       
+    </div>
+    <div id="resultados" class="">
+        <div class="col-9 align-self-center">
+           <h1>Resultados</h1>
+           <p>As avaliações são realizadas por 20% de nossos clientes para 
+               sabermos como anda a aceitação de nossos produtos.
+           </p>
+           <a class="btn btn-primary" href="/resultados" role="button">Veja os resultados</a>
+        </div>       
+    </div>
+    <div >
+        <div class=" align-self-center">
+            <a href="#menu"><img id="voltar"  src="../views/assets/images/voltar-topo.png"></a>
+         </div> 
     </div>
     <footer>
         <div class="row justify-content-center">
-            <p>© Todos os direitos reservados.</p>
+                <p>© Todos os direitos reservados.</p>
         </div>
     </footer> 
-    <!-- Optional JavaScript -->
+   
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

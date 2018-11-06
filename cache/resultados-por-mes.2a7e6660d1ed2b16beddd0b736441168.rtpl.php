@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="../views/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../views/assets/css/style.css">
     <title>Resultados</title>
 </head>
 
@@ -26,19 +26,21 @@
                     <li class="nav-item ">
                         <a class="nav-link" href="/clientes">Clientes</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item ">
                         <a class="nav-link" href="/avaliacoes">Avaliações</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/avaliacoes">Resultados</a>
                     </li>
                 </ul>
             </div>
         </nav>
     </header>
     <div class="container">
-        <div id = "button-novo" class="row justify-content-end">
-            <a id="btn-novo-ava"class="btn btn-primary" href="/avaliacoes" role="button">Novo</a>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-hover table-striped">
+        <div id="piechart" style="width: 900px; height: 500px;"></div>
+        <h3>Resultados</h3>
+        <div id="tabela-resultados" class="table-responsive">
+            <table class="table table-hover ">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">Data</th>
@@ -46,23 +48,50 @@
                         <th scope="col">Neutros</th>
                         <th scope="col">Promotores</th>
                         <th scope="col">NPS</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr class="<?php echo htmlspecialchars( $data["marcador"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                         <td id="data" class="classificar"><?php echo htmlspecialchars( $data["data"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                         <td id="detratores" class="classificar"><?php echo htmlspecialchars( $data["detratores"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                         <td id="neutros" class="classificar"><?php echo htmlspecialchars( $data["neutros"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                         <td id="promotores" class="classificar"><?php echo htmlspecialchars( $data["promotores"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                         <td id="nps" class="classificar"><?php echo format($data["nps"]); ?>%</td>
-                        <td id="sinalizador">aqui</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div id="piechart" style="width: 900px; height: 500px;"></div>
+        <div>
+            <h3>Avaliações</h3>
+            <div id="tabela-resultados" class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Cliente</th>
+                            <th scope="col">Nota</th>
+                            <th scope="col">Motivo</th>
+                            <th scope="col">Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $counter1=-1;  if( isset($value) && ( is_array($value) || $value instanceof Traversable ) && sizeof($value) ) foreach( $value as $key1 => $value1 ){ $counter1++; ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars( $value1["cliente"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["nota"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["motivo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["data"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+    <footer>
+        <div class="row justify-content-center">
+            <p>© Todos os direitos reservados.</p>
+        </div>
+    </footer> 
      <!--Script Google Charts-->
      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     

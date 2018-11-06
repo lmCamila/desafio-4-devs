@@ -15,7 +15,7 @@ function drawChart() {
   ]);
 
   var options = {
-    title: 'Avaliação'
+    title: 'Resultados'
   };
 
   var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -23,15 +23,3 @@ function drawChart() {
   chart.draw(data, options);
 }
 
-
-window.onload(function(){
-  var nsp = parseFloat(document.getElementById("nsp").innerHTML);
-  
-  if(nsp < 60){
-    document.getElementsByClassName('classidicar').css("background-color","#FF0000");
-  }else if(nsp >=60 || nsp <= 79.99){
-    document.getElementsByClassName('classidicar').css("background-color","#FFFF00") ;
-  }
-  else if(nsp >= 80){
-    document.getElementsByClassName('classidicar').css("background-color","#00FF00");  }
-})

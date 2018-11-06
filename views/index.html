@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="./views/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../views/assets/css/style.css">
     <title>Home</title>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav id="menu" class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" href="#">ForLogic</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -29,29 +29,46 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/avaliacoes">Avaliações</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/resultados">Resultados</a>
+                    </li>
                 </ul>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div id="home" class="">
         <div class="col-9 align-self-center">
-            <form method="POST" action="">
-                <div class="form-group">
-                    <label for="data" class="col-form-label" >Selecione o mês:</label>
-                    <select id="data" class="form-control" name= "data">
-                        {loop="$data"}
-                        <option>{$value.data}</option>
-                        {/loop}
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-primary" value="ENVIAR">
-                </div>
-            </form>
-        </div>
-        
+           <h1>Clientes</h1>
+           <p>Possuimos {$totalClientes} clientes cadastrados.</p>
+           <a class="btn btn-primary" href="/clientes" role="button">Ir para clientes</a>
+        </div>       
     </div>
-
+    <div id="avaliacoes" class="">
+        <div class="col-9 align-self-center">
+           <h1>Avaliações</h1>
+           <p>As as valiações verificam os níveis de satisfação dos nossos clientes com nossos produtos.</p>
+           <a class="btn btn-primary" href="/avaliacoes" role="button">Ir para avaliações</a>
+        </div>       
+    </div>
+    <div id="resultados" class="">
+        <div class="col-9 align-self-center">
+           <h1>Resultados</h1>
+           <p>As avaliações são realizadas por 20% de nossos clientes para 
+               sabermos como anda a aceitação de nossos produtos.
+           </p>
+           <a class="btn btn-primary" href="/resultados" role="button">Veja os resultados</a>
+        </div>       
+    </div>
+    <div >
+        <div class=" align-self-center">
+            <a href="#menu"><img id="voltar"  src="../views/assets/images/voltar-topo.png"></a>
+         </div> 
+    </div>
+    <footer>
+        <div class="row justify-content-center">
+                <p>© Todos os direitos reservados.</p>
+        </div>
+    </footer> 
    
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

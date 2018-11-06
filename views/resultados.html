@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="../views/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../views/assets/css/style.css">
     <title>Resultados</title>
 </head>
 
@@ -21,49 +21,56 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Home </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a class="nav-link" href="/clientes">Clientes</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="/avaliacoes">Avaliações</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link " href="/avaliacoes">Resultados</a>
                     </li>
                 </ul>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <div id = "button-novo" class="row justify-content-end">
-            <a id="btn-novo-ava"class="btn btn-primary" href="/avaliacoes" role="button">Novo</a>
-        </div>
+   
+    <div id="table-results" class="container">
         <div class="table-responsive">
-            <table class="table table-hover table-striped">
+            <table class="table table-hover">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">Data</th>
-                        <th scope="col">Detratores</th>
-                        <th scope="col">Neutros</th>
-                        <th scope="col">Promotores</th>
-                        <th scope="col">NPS</th>
+                            <th scope="col">Detratores</th>
+                            <th scope="col">Neutros</th>
+                            <th scope="col">Promotores</th>
+                            <th scope="col">NPS</th>
+                            <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td id="data" class="classificar">{$data.data}</td>
-                        <td id="detratores" class="classificar">{$data.detratores}</td>
-                        <td id="neutros" class="classificar">{$data.neutros}</td>
-                        <td id="promotores" class="classificar">{$data.promotores}</td>
-                        <td id="nps" class="classificar">{function="format($data.nps)"}%</td>
+                    {loop="$value"}
+                    <tr class="{$value.marcador}">
+                        <td>{$value.data}</td>
+                        <td>{$value.detratores}</td>
+                        <td>{$value.neutros}</td>
+                        <td>{$value.promotores}</td>
+                        <td>{function="format($value.nps)"}%</td>
+                        <td><a class="btn btn-primary" href="/resultados/{$value.data}" role="button">Ver mais</a></td>
                     </tr>
+                    {/loop}
                 </tbody>
             </table>
         </div>
-        <div id="piechart" style="width: 900px; height: 500px;"></div>
     </div>
-     <!--Script Google Charts-->
-     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
+    <footer>
+        <div class="row justify-content-center">
+            <p>© Todos os direitos reservados.</p>
+        </div>
+    </footer> 
+   
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -71,9 +78,6 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-
-         <!-- Optional JavaScript -->
-     <script type="text/javascript" src="../views/js/myLib.js"></script>
 </body>
 
 </html>

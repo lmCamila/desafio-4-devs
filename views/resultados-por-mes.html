@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../views/assets/css/style.css">
-    <title>Clientes</title>
+    <title>Resultados</title>
 </head>
 
 <body>
@@ -23,48 +23,68 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item ">
                         <a class="nav-link" href="/clientes">Clientes</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item ">
                         <a class="nav-link" href="/avaliacoes">Avaliações</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/resultados">Resultados</a>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/avaliacoes">Resultados</a>
                     </li>
                 </ul>
             </div>
         </nav>
     </header>
     <div class="container">
-        <div id = "button-novo" class="row justify-content-end">
-            <a id="btn-novo"class="btn btn-primary" href="/clientes/cadastrar" role="button">Novo</a>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-hover table-striped">
+        <div id="piechart" style="width: 900px; height: 500px;"></div>
+        <h3>Resultados</h3>
+        <div id="tabela-resultados" class="table-responsive">
+            <table class="table table-hover ">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">Empresa</th>
-                        <th scope="col">Contato</th>
-                        <th scope="col">Data de cadastro</th>
-                        <th scope="col">Sinalizador</th>
-                        <th scope="col"> </th>
-                        <th scope="col"> </th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Detratores</th>
+                        <th scope="col">Neutros</th>
+                        <th scope="col">Promotores</th>
+                        <th scope="col">NPS</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {loop="$data"}
-                    <tr>
-                        <td>{$value.cliente}</td>
-                        <td>{$value.nome_contato}</td>
-                        <td>{$value.data}</td>
-                        <td>{$value.classificacao}</td>
-                        <td><a class="btn btn-primary" href="/clientes/alterar/{$value.chave}" role="button">Alterar</a></td>
-                        <td><a class="btn btn-primary" href="/clientes/excluir/{$value.chave}" role="button">Excluir</a></td>
+                    <tr class="{$data.marcador}">
+                        <td id="data" class="classificar">{$data.data}</td>
+                        <td id="detratores" class="classificar">{$data.detratores}</td>
+                        <td id="neutros" class="classificar">{$data.neutros}</td>
+                        <td id="promotores" class="classificar">{$data.promotores}</td>
+                        <td id="nps" class="classificar">{function="format($data.nps)"}%</td>
                     </tr>
-                    {/loop}
                 </tbody>
             </table>
+        </div>
+        <div>
+            <h3>Avaliações</h3>
+            <div id="tabela-resultados" class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Cliente</th>
+                            <th scope="col">Nota</th>
+                            <th scope="col">Motivo</th>
+                            <th scope="col">Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {loop="$value"}
+                        <tr>
+                            <td>{$value.cliente}</td>
+                            <td>{$value.nota}</td>
+                            <td>{$value.motivo}</td>
+                            <td>{$value.data}</td>
+                        </tr>
+                        {/loop}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <footer>
@@ -72,7 +92,9 @@
             <p>© Todos os direitos reservados.</p>
         </div>
     </footer> 
-    <!-- Optional JavaScript -->
+     <!--Script Google Charts-->
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -80,6 +102,9 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+
+         <!-- Optional JavaScript -->
+     <script type="text/javascript" src="../views/js/myLib.js"></script>
 </body>
 
 </html>
