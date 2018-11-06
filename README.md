@@ -29,3 +29,27 @@ Não envie sua resolução por email. Crie um repositório em alguma ferramenta 
 Caso você tenha ficado com alguma dúvida [abra uma issue](https://github.com/ForLogic/desafio-4-devs/issues) e nós vamos te ajudar.
 
 **Boa sorte! xD**
+## Configurações para o projeto
+Adicione os seguintes códigos aos seguintes arquivos :
+A pasta do projeto deve estar em C:.
+C:\Windows\System32\drivers\etc
+Arquivo: hosts
+127.0.0.1	   www.projeto4devs.com.br
+
+C:\xampp\apache\conf\extra
+Arquivo:httpd-vhosts.conf
+
+    <VirtualHost *:80>
+	    ServerAdmin webmaster@projeto4devs.com.br
+	    DocumentRoot "C:/projeto_Forlogic"
+	    ServerName www.projeto4devs.com.br
+	    ErrorLog "logs/dummy-host2.example.com-error.log"
+	    CustomLog "logs/dummy-host2.example.com-access.log" common
+	    <Directory "C:/projeto_Forlogic">
+	        Require all granted
+	        RewriteEngine On
+	        RewriteCond %{REQUEST_FILENAME} !-d
+	        RewriteCond %{REQUEST_FILENAME} !-f
+	        RewriteRule ^ index.php [QSA,L]
+	    </Directory>
+    </VirtualHost>
